@@ -1,0 +1,136 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2023_conference_tinypaper,times}
+
+% Optional math commands from https://github.com/goodfeli/dlbook_notation.
+\input{math_commands.tex}
+
+\usepackage{hyperref}
+\usepackage{url}
+
+
+\title{Exploratory Analysis of Scholarly Publications on Artificial Intelligence (AI) in Colonoscopy using Litstudy}
+
+% Authors must not appear in the submitted version. They should be hidden
+\iclrfinalcopy
+% Non-anonymous submissions will be rejected without review.
+
+\author{Mary Adewunmi \& Kwang Chien Yee\\
+CHM, School of Medicine,\\
+University of Tasmania(UTAS),\\
+Hobart, TAS7000, Australia.\\
+\texttt{\{mary.adewunmi\},{\{kwang.yee\}@utas.edu.au}\\
+%\texttt{\{hippo,brain,jen\}@cs.cranberry-lemon.edu} 
+\And
+Ming Chao Wong\\
+School of ICT, \\
+University of Tasmania(UTAS),\\
+Sandybay, TAS7005, Australia.\\
+\texttt{\{ming.wong\}@utas.edu.au} \\
+}
+}
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+%iclrfinalcopy % Uncomment for camera-ready version, but NOT for submission.
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+Due to the large number of scholarly papers on AI and colonoscopy and the short research period, it can be difficult to answer general questions about the research area, such as who the key authors are and what the key issues or insights are. We use Litstudy, a Python library, to study colonoscopy AI research. "AI" and "colonoscopy" keywords were used as search results. 3865 IEEE Xplore and 2007 Springer bibliographies were downloaded. Scopus found 5083 citation papers, excluding 789 unavailable citations. Topic clusters were created using the NMF model with a 0.85 threshold. Topic clouds showed that "Patient" occurred most in four topics: 2, 3, 7, and 10. Despite querying IEEE, Springer, and Scopus databases with the "Artificial Intelligence" keyword, subject 5 with AI has the lowest topic phrase weight in topic clouds. Topic 10 words cluster on colon cancer rehabilitation in colonoscopy showed weak topic clusters. The project selects scientific articles, analyses and visualises their scholarly contribution using natural language processing (NLP), bibliographic network analysis, and, most importantly, reveals word clusters in AI for colonoscopy publications.
+\end{abstract}
+
+\section{Introduction}
+AI systems aid colonoscopy\cite{xu2023artificial}\cite{mori2021artificial}. Litstudy \cite{heldens2022litstudy} \footnote{Litstudy is a Python module that makes it possible to respond to queries using simple scripts}, for the selection of scholarly scopus articles, visualisation with bibliographic network analysis that show connections between publications and their authors, graph statistics on document metadata and automated topic discovery using natural language processing.
+
+\section{Methodology}
+\subsection{About the datasets}
+
+“AI” AND “Colonoscopy"\footnote{Colonoscopy is the standard method of removing polyps in Colon cancer patients\cite{rex2015quality}} keywords were used as search results for primary metadata which includes the title, author, publication date, DOI (Digital Object Identifier) and the secondary data generated were topic clusters from abstract and bibliographic cocitation networks from many references/citations extracted. 3865 papers from IEEE Xplore and 2007 papers from Springer making 5872 papers in CSV format. Out of which 5083 citation papers were found on Scopus and 789 unavailable citations were discarded. 
+\subsection{ Followed Methods}
+
+We used the litstudy library\cite{heldens2022litstudy} in this project, installed through the Python Package Index (PyPi) \cite{bommarito2019empirical}. It is based on several well-known tools from the Python data science ecosystem, including Pandas \cite{mckinney2011pandas, mckinney2012python} and NumPy\cite{oliphant2006guide}. Furthermore, we used non-negative matrix factorization (NMF) an unsupervised model for topic detection and semantic relationship using a threshold of 0.85 [4] for the simplicity and easier interpretability of its results.
+The five key steps are as follows: Explored and downloaded scientific document metadata from a variety of sources, including IEEE, Springer's multiple research databases. The bibliography data from several sources was merged into a comma-separated variable (CSV) format; Sorted, chose, removed duplicates from, and annotate document collections by comparing them with the Scopus bibliography data; Calculated and displayed broad statistics about the documents' metadata (e.g., statistics per year, per author, per journal, etc.); Created, mapped, and evaluated different bibliographic networks that illustrate the connections between the use of AI for colonoscopy publications and their authors, and topic discovery automatically using natural language processing (NLP).
+
+\section{Results and Discussion}
+According to Fig.1, patients was highly prevalent in four topics: 2, 3, 7, and 10, which we further validated using cocitation graph as seen in Fig.2. which was similarly used by \cite{song2023studying} to study relationship among authors in scientometrics. Despite utilising the same keyword to search the database, subject 5 with AI has the lowest topic phrase weight. 
+
+
+\begin{wrapfigure}{l}{0.8\textwidth}
+\includegraphics[width=0.9\linewidth]{iclr2023_pics/Topwords Cluster.png} 
+\caption{Top Word Clusters}
+\label{fig:wrapfig}
+\end{wrapfigure}
+
+Topic 10 in Fig.1 on cancer rehabilitation \footnote{Rehabilitation is one of the procedures used to follow up on cancer recovery. \cite{van2005multidimensional}} revealed a weak relationship among the topic clusters, which requires additional investigation with the foreknowledge that the subject has a significant impact on colon cancer recovery.
+
+\begin{wrapfigure}{l}{0.6\textwidth}
+\includegraphics[width=0.9\linewidth]{iclr2023_pics/Cocitation Bibliography Net.png}
+\caption{Cocitation Bibliography Network Graph}
+
+\label{fig:wrapfig}
+\end{wrapfigure}
+
+In retrospect, co-citation analysis evaluates AI and Colonoscopy document similarities. Future co-citation frequencies fluctuate with academic field evolution.
+
+\section{Conclusion}
+We examined AI in colonoscopy research using Litstudy, a Python application. This lets us apply natural language processing, topic matrix model, and cocitation network analysis to analyse research publications on colonoscopy and artificial intelligence. The study also revealed that artificial intelligence has been understudied in colonoscopy and colon cancer in general, and some topics or subjects require more attention than others.
+
+
+
+\clearpage
+\section*{Acknowledgements}
+Special thanks to Elsevier customer support, Paul Jordan Biyo, and UTAS librarian, Nathaniel Enright, for helping out with sorting Scopus API errors during the coding phase.
+
+\subsubsection*{URM Statement}
+ Author MA meets the URM criteria of ICLR 2023 Tiny Papers Track. 
+ 
+\bibliography{iclr2023_conference_tinypaper}
+\bibliographystyle{iclr2023_conference_tinypaper}
+
+\appendix
+\section{Appendix}
+\subsection{Codes}
+The Notebook and the data would be added after the paper must have been accepted.
+\subsection{Other figures from Results }
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth, inner]{iclr2023_pics/Topwords Cluster.png}
+\caption{Top Word Clusters}
+%\label{fig:figure1}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth, inner]{iclr2023_pics/Cocitationgraph_Figure2_ICLR.png}
+\caption{Cocitation Bibliography Network Graph}
+\label{fig:figure2}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth, inner]{iclr2023_pics/Topwords with NNMF.png}
+\caption{Topwords with NNMF model}
+\label{fig:figure3}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth, inner]{iclr2023_pics/Yearofpub.png}
+\caption{Year of Publication Histogram}
+\label{fig:figure4}
+\end{figure}
+
+\begin{figure}[h]
+\includegraphics[width=1.0\textwidth, inner]{iclr2023_pics/Litstudyconceptual_framework.jpg}
+\caption{Litstudy conceptual framework\cite{heldens2022litstudy}}
+\label{fig:figure5}
+\end{figure}
+
+\end{document}
